@@ -874,3 +874,53 @@ def novo_pedido(id: int):
     })
 
     return {"ok": True}
+
+# ===================== tablet 01 =====================
+@app.get("/tablet/{id}", response_class=HTMLResponse)
+def tablet(id: int):
+
+    lista = pedidos.get(id, [])
+
+    linhas = ""
+
+    for p in lista:
+        linhas += f"""
+        <div class="card">
+            <div><b>Produto:</b> {p.get("produto","")}</div>
+            <div><b>Qtd:</b> {p.get("quantidade","")}</div>
+            <div><b>Fardos:</b> {p.get("fardos","")}</div>
+            <div><b>Obs:</b> {p.get("descricao","")}</div>
+        </div>
+        """
+
+    return f"""
+    <html>
+    <body style="background:#0b2d1f; color:white; font-family:Arial; text-align:center;">
+
+        <h1>📱 MÁQUINA {id}</h1>
+
+        <input id="operador" placeholder="Nome do operador" style="padding:10px; width:80%; margin-bottom:10px;">
+
+        <button onclick="iniciar()" style="background:#22c55e; padding:15px; width:80%; margin:5px;">INICIAR</button>
+        <button onclick="parar()" style="background:#ef4444; padding:15px; width:80%; margin:5px;">PARAR</button>
+
+        <hr>
+
+        {linhas}
+
+        <script>
+
+        function iniciar(){
+            alert("Produção iniciada");
+        }
+
+        function parar(){
+            alert("Máquina parada");
+        }
+
+        </script>
+
+    </body>
+    </html>
+    """
+
