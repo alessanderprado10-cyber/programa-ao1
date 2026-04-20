@@ -910,17 +910,16 @@ def tablet(id: int):
 
         <script>
 
-        function iniciar(){
+        function iniciar(){{
             alert("Produção iniciada");
-        }
+        }}
 
-        function parar(){
+        function parar(){{
             alert("Máquina parada");
-        }
+        }}
 
         </script>
 
     </body>
     </html>
     """
-
