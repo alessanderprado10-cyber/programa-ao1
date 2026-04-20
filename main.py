@@ -883,20 +883,26 @@ def tablet(id: int):
 
     linhas = ""
 
-    for p in lista:
+    for i, p in enumerate(lista):
         linhas += f"""
-        <div class="card">
-            <div><b>Produto:</b> {p.get("produto","")}</div>
-            <div><b>Qtd:</b> {p.get("quantidade","")}</div>
-            <div><b>Fardos:</b> {p.get("fardos","")}</div>
-            <div><b>Obs:</b> {p.get("descricao","")}</div>
-        </div>
+        <tr>
+            <td>{i+1}°</td>
+            <td>{p.get("data","")}</td>
+            <td>{p.get("cod","")}</td>
+            <td>{p.get("produto","")}</td>
+            <td>{p.get("quantidade","")}</td>
+            <td>{p.get("fardos","")}</td>
+            <td>X</td>
+            <td>{p.get("descricao","")}</td>
+            <td>--</td>
+        </tr>
         """
 
     return f"""
     <html>
     <head>
     <style>
+
     body {{
         background: linear-gradient(135deg, #0b2d1f, #0f3d2e);
         color: white;
@@ -904,18 +910,13 @@ def tablet(id: int):
         text-align: center;
     }}
 
-    .container {{
-        max-width: 500px;
-        margin: auto;
-        margin-top: 30px;
+    h1 {{
+        margin-top: 20px;
     }}
 
-    .card {{
-        background: #1f2937;
-        padding: 15px;
-        margin-top: 15px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    .operador {{
+        margin: 20px auto;
+        width: 300px;
     }}
 
     input {{
@@ -923,55 +924,84 @@ def tablet(id: int):
         padding: 12px;
         border-radius: 8px;
         border: none;
-        margin-bottom: 10px;
+        text-align: center;
+        font-size: 16px;
+    }}
+
+    table {{
+        width: 95%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }}
+
+    th {{
+        background: #1f2937;
+        padding: 12px;
+    }}
+
+    td {{
+        background: #d1d5db;
+        color: black;
+        padding: 10px;
+    }}
+
+    tr {{
+        border-bottom: 5px solid #0b2d1f;
     }}
 
     .btn {{
-        width: 100%;
+        width: 200px;
         padding: 15px;
+        margin: 10px;
         border: none;
         border-radius: 10px;
         font-size: 16px;
-        margin-top: 8px;
     }}
 
-    .start {{
-        background: #22c55e;
-    }}
-
-    .stop {{
-        background: #ef4444;
-    }}
+    .start {{ background: #22c55e; }}
+    .stop {{ background: #ef4444; }}
 
     </style>
     </head>
 
     <body>
 
-    <div class="container">
+        <h1>📱 PROGRAMAÇÃO MÁQUINA {id}</h1>
 
-        <h1>📱 MÁQUINA {id}</h1>
-
-        <input placeholder="Nome do operador">
+        <div class="operador">
+            <input placeholder="Nome do operador">
+        </div>
 
         <button class="btn start" onclick="iniciar()">INICIAR</button>
         <button class="btn stop" onclick="parar()">PARAR</button>
 
-        <hr>
+        <table>
+            <tr>
+                <th>ORDEM</th>
+                <th>DATA</th>
+                <th>CÓD</th>
+                <th>MEDIDA</th>
+                <th>QUANTIDADE</th>
+                <th>EMBALAGEM</th>
+                <th>ETIQUETA</th>
+                <th>OBSERVAÇÃO</th>
+                <th>FINALIZADO</th>
+            </tr>
 
-        {linhas}
+            {linhas}
 
-    </div>
+        </table>
 
-    <script>
-    function iniciar(){{
-        alert("Produção iniciada");
-    }}
+        <script>
+        function iniciar(){{
+            alert("Produção iniciada");
+        }}
 
-    function parar(){{
-        alert("Máquina parada");
-    }}
-    </script>
+        function parar(){{
+            alert("Máquina parada");
+        }}
+        </script>
 
     </body>
     </html>
