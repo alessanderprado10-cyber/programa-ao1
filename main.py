@@ -895,30 +895,83 @@ def tablet(id: int):
 
     return f"""
     <html>
-    <body style="background:#0b2d1f; color:white; font-family:Arial; text-align:center;">
+    <head>
+    <style>
+    body {{
+        background: linear-gradient(135deg, #0b2d1f, #0f3d2e);
+        color: white;
+        font-family: Arial;
+        text-align: center;
+    }}
+
+    .container {{
+        max-width: 500px;
+        margin: auto;
+        margin-top: 30px;
+    }}
+
+    .card {{
+        background: #1f2937;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }}
+
+    input {{
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 10px;
+    }}
+
+    .btn {{
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        margin-top: 8px;
+    }}
+
+    .start {{
+        background: #22c55e;
+    }}
+
+    .stop {{
+        background: #ef4444;
+    }}
+
+    </style>
+    </head>
+
+    <body>
+
+    <div class="container">
 
         <h1>📱 MÁQUINA {id}</h1>
 
-        <input id="operador" placeholder="Nome do operador" style="padding:10px; width:80%; margin-bottom:10px;">
+        <input placeholder="Nome do operador">
 
-        <button onclick="iniciar()" style="background:#22c55e; padding:15px; width:80%; margin:5px;">INICIAR</button>
-        <button onclick="parar()" style="background:#ef4444; padding:15px; width:80%; margin:5px;">PARAR</button>
+        <button class="btn start" onclick="iniciar()">INICIAR</button>
+        <button class="btn stop" onclick="parar()">PARAR</button>
 
         <hr>
 
         {linhas}
 
-        <script>
+    </div>
 
-        function iniciar(){{
-            alert("Produção iniciada");
-        }}
+    <script>
+    function iniciar(){{
+        alert("Produção iniciada");
+    }}
 
-        function parar(){{
-            alert("Máquina parada");
-        }}
-
-        </script>
+    function parar(){{
+        alert("Máquina parada");
+    }}
+    </script>
 
     </body>
     </html>
